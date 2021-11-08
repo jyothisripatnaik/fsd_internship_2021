@@ -69,3 +69,10 @@
   .btn-2:active {
     top: 2px;
   }
+
+  @media screen and (min-width: 1200px){
+    .buttons-bne{
+      position: relative !important; 
+      top: 40px !important;
+    }
+  }
