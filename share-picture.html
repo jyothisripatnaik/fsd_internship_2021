@@ -14,8 +14,10 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
     />
+    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <!-- MDB -->
     <link rel="stylesheet" href="css/mdb.min.css" />
+    <link rel="stylesheet" href="css/style.css">
     <style>
       html,
       body,
@@ -23,9 +25,119 @@
         height: 100%;
       }
       .hi {
-        background: linear-gradient(to bottom, #3366ff 0%, #99ccff 100%);
+        background: rgb(0,74,152);
+        background: linear-gradient(173deg, rgba(0,74,152,1) 29%, rgba(88,132,179,1) 100%, rgba(219,219,219,1) 100%);
         height: 100vh;
       }
+
+      
+.file-upload {
+  background-color: #ffffff;
+  width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.file-upload-btn {
+  width: 100%;
+  margin: 0;
+  color: #fff;
+  background: #0C56D0;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  border-bottom: 4px solid #254dff;
+  transition: all .2s ease;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.file-upload-btn:hover {
+  background: rgba(88,132,179,1);
+  color: #FFFFFF;
+  transition: all .2s ease;
+  cursor: pointer;
+}
+
+.file-upload-btn:active {
+  border: 0;
+  transition: all .2s ease;
+}
+
+.file-upload-content {
+  display: none;
+  text-align: center;
+}
+
+.file-upload-input {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.image-upload-wrap {
+  margin-top: 20px;
+  border: 4px dashed #0C56D0;
+  position: relative;
+}
+
+.image-dropping,
+.image-upload-wrap:hover {
+  background-color: #0C56D0;
+  border: 4px dashed #ffffff;
+}
+.image-title-wrap {
+  padding: 0 15px 15px 15px;
+  color: #222;
+}
+.drag-text {
+  text-align: center;
+}
+.drag-text h3 {
+  font-weight: 100;
+  text-transform: uppercase;
+  color: #618bcf;
+  padding: 60px 0;
+}
+.file-upload-image {
+  max-height: 200px;
+  max-width: 200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.remove-image {
+  width: 200px;
+  margin: 0;
+  color: #fff;
+  background: #cd4535;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  border-bottom: 4px solid #b02818;
+  transition: all .2s ease;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.remove-image:hover {
+  background: #c13b2a;
+  color: #ffffff;
+  transition: all .2s ease;
+  cursor: pointer;
+}
+
+.remove-image:active {
+  border: 0;
+  transition: all .2s ease;
+}
     </style>
   </head>
   <body class="bg-light">
@@ -45,10 +157,25 @@
             
            <div style="color: white;"><h1>Can you share the picture of the place?</h1></div>
           </div>
-            <div class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0" style="margin-top: 300px;">
-                <label for="formFileMultiple" class="form-label">Multiple files input example</label>
-                <input class="form-control" type="file" id="formFileMultiple" multiple />
-              <div style="position: relative; top: 255px; display: flex; justify-content: space-between;">
+            <div class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0" style="margin-top: 230px;">
+                <!-- <input class="form-control" type="file" id="formFileMultiple" multiple /> -->
+                <div class="file-upload">
+                    <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
+                  
+                    <div class="image-upload-wrap">
+                      <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                      <div class="drag-text">
+                        <h3>Drag and drop a file or select add Image</h3>
+                      </div>
+                    </div>
+                    <div class="file-upload-content">
+                      <img class="file-upload-image" src="#" alt="your image" />
+                      <div class="image-title-wrap">
+                        <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                      </div>
+                    </div>
+                  </div>
+              <div style="position: relative; top: 150px; display: flex; justify-content: space-between;">
               <a href="place.html"><button type="button" class="btn btn-primary btn-rounded">Back</button></a>
               <a href="restrection.html"><button type="button" class="btn btn-primary btn-rounded">Next</button></a>
               </div>
@@ -75,5 +202,46 @@
     <script type="text/javascript" src="js/mdb.min.js"></script>
     <!-- Custom scripts -->
     <script type="text/javascript"></script>
+    <script>
+        document.getElementById("uploadBtn").onchange = function () {
+        document.getElementById("uploadFile").value = this.value;
+        };
+    </script>
+
+    <SCript>
+        function readURL(input) {
+  if (input.files && input.files[0]) {
+
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('.image-upload-wrap').hide();
+
+      $('.file-upload-image').attr('src', e.target.result);
+      $('.file-upload-content').show();
+
+      $('.image-title').html(input.files[0].name);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+
+  } else {
+    removeUpload();
+  }
+}
+
+function removeUpload() {
+  $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+  $('.file-upload-content').hide();
+  $('.image-upload-wrap').show();
+}
+$('.image-upload-wrap').bind('dragover', function () {
+		$('.image-upload-wrap').addClass('image-dropping');
+	});
+	$('.image-upload-wrap').bind('dragleave', function () {
+		$('.image-upload-wrap').removeClass('image-dropping');
+});
+
+    </SCript>
   </body>
 </html>

@@ -16,6 +16,7 @@
     />
     <!-- MDB -->
     <link rel="stylesheet" href="css/mdb.min.css" />
+    <link rel="stylesheet" href="css/style.css">
     <style>
       html,
       body,
@@ -23,8 +24,16 @@
         height: 100%;
       }
       .hi {
-        background: linear-gradient(to bottom, #3366ff 0%, #99ccff 100%);
+        background: rgb(0,74,152);
+        background: linear-gradient(173deg, rgba(0,74,152,1) 29%, rgba(88,132,179,1) 100%, rgba(219,219,219,1) 100%);
         height: 100vh;
+      }
+      .valid{
+          border: 1px solid #ccc;
+          border-radius: 18px;
+          padding: 25px;
+          box-shadow: 1px 0px 8px 0px #ccc;
+          text-align: center;
       }
     </style>
   </head>
@@ -45,25 +54,18 @@
             
            <div style="color: white;"><h1>Please validate details before we post the requirement</h1></div>
           </div>
-            <div class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0" style="margin-top: 150px;">
-               <div style="max-width: 100%; margin: auto;">
-                <h1>Validation</h1>
-                <ul style="list-style-type:square">
-                    <li>A Shared room</li>
-                    <ul>
-                        <li>Flat number</li>
-                        <li>Street</li>
-                        <li>City</li>
-                        <li>State</li>
-                    </ul>
-                    <li>Image</li>
-                    <li>Your Requirement</li>
-                  </ul>
+            <div class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0" style="margin-top: 50px;">
+               <div class="valid">
+                <h1>Please check your details</h1>
+                <img src="https://a0.muscache.com/im/pictures/701d7170-3365-4b75-a255-39feebed95de.jpg?im_w=1200" class="w-50">
+                <p style="font-weight: 900;">Kind of Space</p>
+                <span>Address</span>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit labore excepturi sed est odio nostrum dolorum neque ratione? Sit aliquid non possimus esse enim quaerat, nemo laboriosam quia blanditiis ratione!</p>
                 </div>
 
-              <div style="position: relative; top: 180px; display: flex; justify-content: space-between;">
-              <a href="share-picture.html"><button type="button" class="btn btn-primary btn-rounded">Back</button></a>
-              <a href="share-picture.html"><button type="button" class="btn btn-primary btn-rounded">Next</button></a>
+              <div style="position: relative; top: 80px; display: flex; justify-content: space-between;">
+              <a href="restrection.html"><button type="button" class="btn btn-primary btn-rounded">Back</button></a>
+              <a href="index.html"><button type="button" class="btn btn-primary btn-rounded">Exit</button></a>
               </div>
             </div>
             
